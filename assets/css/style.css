@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: block;
+    text-align: center;
+    align-items: center;
+    background-color: navy;
+    color: antiquewhite;
+}
+
+h1 {
+    padding: 20px;
+}
