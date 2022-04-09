@@ -27,9 +27,9 @@ function getWeaterApi() {
             console.log(cityData);
 
             todayContainer.append(cityData);
-            todayContainer.append("Temp: " + tempData);
-            todayContainer.append("Wind Speed: " + windData);
-            todayContainer.append("Humidity: " + humidityData);
+            todayContainer.append(tempData);
+            todayContainer.append(windData);
+            todayContainer.append(humidityData);
 
         }
         )
