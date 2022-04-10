@@ -61,9 +61,7 @@ function getWeatherApi() {
         
 }
 
-fetchButton.addEventListener('click', getWeatherApi);
-fetchButton.addEventListener('click', getFiveDay);
-
+// Fetch information from weather API (5 day forecast)
 function getFiveDay() {
     var requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-117&exclude=minutely&units=imperial&appid=" + apiKey;
 
@@ -152,7 +150,9 @@ function getFiveDay() {
         })
 }
 
-//
+
+fetchButton.addEventListener('click', getWeatherApi);
+fetchButton.addEventListener('click', getFiveDay);
 
 
 // city (current date)
