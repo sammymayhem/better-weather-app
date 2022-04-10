@@ -15,3 +15,8 @@ header {
 h1 {
     padding: 20px;
 }
+
+.weather-card {
+    background-color: navy;
+    color: white;
+}

@@ -23,9 +23,6 @@ var dateThreeDate1 = moment().add(3, "d").format("l");
 var dateFourDate1 = moment().add(4, "d").format("l");
 var dateFiveDate1 = moment().add(5, "d").format("l");
 
-// var new_date = moment(startdate, "DD-MM-YYYY").add(5, 'days');
-
-
 // Get city name
 // var getCityName = function (event) {
 //     event.preventDefault();
@@ -41,8 +38,6 @@ var dateFiveDate1 = moment().add(5, "d").format("l");
 //       alert('Please enter a GitHub username');
 //     }
 //   };
-
-
 
 // Fetch informatin from weather API (for main card)
 function getWeatherApi() {
@@ -177,7 +172,6 @@ function getFiveDay() {
 
         })
 }
-
 
 fetchButton.addEventListener('click', getWeatherApi);
 fetchButton.addEventListener('click', getFiveDay);
