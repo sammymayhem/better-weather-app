@@ -4,11 +4,24 @@ var currentDate = moment().format("l");
 
 var todayContainer = document.getElementById("weather-today");
 var fetchButton = document.getElementById("fetch");
+
 var dayOne = document.getElementById("weather-1");
 var dayTwo = document.getElementById("weather-2");
 var dayThree = document.getElementById("weather-3");
 var dayFour = document.getElementById("weather-4");
 var dayFive = document.getElementById("weather-5");
+
+var dateOne = document.getElementById("date-1");
+var dateTwo = document.getElementById("date-2");
+var dateThree = document.getElementById("date-3");
+var dateFour = document.getElementById("date-4");
+var dateFive = document.getElementById("date-5");
+
+var dateOneDate1 = moment().add(1, "d").format("l");
+var dateTwoDate1 = moment().add(2, "d").format("l");
+var dateThreeDate1 = moment().add(3, "d").format("l");
+var dateFourDate1 = moment().add(4, "d").format("l");
+var dateFiveDate1 = moment().add(5, "d").format("l");
 
 // var new_date = moment(startdate, "DD-MM-YYYY").add(5, 'days');
 
@@ -72,76 +85,91 @@ function getFiveDay() {
         .then(function (data1) {
             console.log(data1);
 
+            var dayOneDate = document.createElement("h2")
             var dayOneIcon = document.createElement("i");
             var dayOneTemp = document.createElement("p");
             var dayOneWind = document.createElement("p");
             var dayOneHumidity = document.createElement("p");
 
+            dayOneDate.textContent = dateOneDate1;
             dayOneIcon.textContent = data1.daily[0].weather[0].icon;
             dayOneTemp.textContent = "Temp: " + data1.daily[0].temp.day;
             dayOneWind.textContent = "Wind: " + data1.daily[0].wind_speed;
             dayOneHumidity.textContent = "Humidity: " + data1.daily[0].humidity;
 
+            dateOne.append(dateOneDate1);
             dayOne.append(dayOneIcon);
             dayOne.append(dayOneTemp);
             dayOne.append(dayOneWind);
             dayOne.append(dayOneHumidity);
 
+            var dayTwoDate = document.createElement("h2")
             var dayTwoIcon = document.createElement("i");
             var dayTwoTemp = document.createElement("p");
             var dayTwoWind = document.createElement("p");
             var dayTwoHumidity = document.createElement("p");
 
+            dayTwoDate.textContent = dateTwoDate1;
             dayTwoIcon.textContent = data1.daily[1].weather[0].icon;
             dayTwoTemp.textContent = "Temp: " + data1.daily[1].temp.day;
             dayTwoWind.textContent = "Wind: " + data1.daily[1].wind_speed;
             dayTwoHumidity.textContent = "Humidity: " + data1.daily[1].humidity;
 
+            dateTwo.append(dateTwoDate1);
             dayTwo.append(dayTwoIcon);
             dayTwo.append(dayTwoTemp);
             dayTwo.append(dayTwoWind);
             dayTwo.append(dayTwoHumidity);
 
+            var dayThreeDate = document.createElement("h2")
             var dayThreeIcon = document.createElement("i");
             var dayThreeTemp = document.createElement("p");
             var dayThreeWind = document.createElement("p");
             var dayThreeHumidity = document.createElement("p");
 
+            dayThreeDate.textContent = dateThreeDate1;
             dayThreeIcon.textContent = data1.daily[2].weather[0].icon;
             dayThreeTemp.textContent = "Temp: " + data1.daily[2].temp.day;
             dayThreeWind.textContent = "Wind: " + data1.daily[2].wind_speed;
             dayThreeHumidity.textContent = "Humidity: " + data1.daily[2].humidity;
 
+            dateThree.append(dateThreeDate1);
             dayThree.append(dayThreeIcon);
             dayThree.append(dayThreeTemp);
             dayThree.append(dayThreeWind);
             dayThree.append(dayThreeHumidity);
 
+            var dayFourDate = document.createElement("h2")
             var dayFourIcon = document.createElement("i");
             var dayFourTemp = document.createElement("p");
             var dayFourWind = document.createElement("p");
             var dayFourHumidity = document.createElement("p");
 
+            dayFourDate.textContent = dateFourDate1;
             dayFourIcon.textContent = data1.daily[3].weather[0].icon;
             dayFourTemp.textContent = "Temp: " + data1.daily[3].temp.day;
             dayFourWind.textContent = "Wind: " + data1.daily[3].wind_speed;
             dayFourHumidity.textContent = "Humidity: " + data1.daily[3].humidity;
 
+            dateFour.append(dateFourDate1);
             dayFour.append(dayFourIcon);
             dayFour.append(dayFourTemp);
             dayFour.append(dayFourWind);
             dayFour.append(dayFourHumidity);
 
+            var dayFiveDate = document.createElement("h2")
             var dayFiveIcon = document.createElement("i");
             var dayFiveTemp = document.createElement("p");
             var dayFiveWind = document.createElement("p");
             var dayFiveHumidity = document.createElement("p");
 
+            dayFiveDate.textContent = dateFiveDate1;
             dayFiveIcon.textContent = data1.daily[4].weather[0].icon;
             dayFiveTemp.textContent = "Temp: " + data1.daily[4].temp.day;
             dayFiveWind.textContent = "Wind: " + data1.daily[4].wind_speed;
             dayFiveHumidity.textContent = "Humidity: " + data1.daily[4].humidity;
 
+            dateFive.append(dateFiveDate1);
             dayFive.append(dayFiveIcon);
             dayFive.append(dayFiveTemp);
             dayFive.append(dayFiveWind);
