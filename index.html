@@ -18,18 +18,58 @@
 
     <section class="container">
         <div class="row">
-            <form class="col-4 justify-content-left">
+            <form class="col-3">
                 <div class="form-group">
-                  <h2 for="search">Search for a City:</h2>
-                  <input type="text" class="form-control" id="city-search">
+                    <h2 for="search">Search for a City:</h2>
+                    <input type="text" class="form-control" id="city-search">
                 </div>
-                <button type="button" id="fetch" class="btn btn-primary btn-lg">Get Weather</button>
-              </form>
-            <div class="card col-lg-8">
+                <button type="button" id="fetch" class="btn-block btn-primary btn-lg">Get Weather</button>
+            </form>
+            <div class="card col-lg-9">
                 <div id="weather-today" class="card-body"></div>
             </div>
         </div>
     </section>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-2">
+                <div id="prev-search"></div>
+            </div>
+
+            <div class="card col-2" style="width: 18rem;">
+                <div class="card-body">
+                    <div id="date-1" class="card-title"></div>
+                    <div id="weather-1" class="card-body"></div>
+                </div>
+            </div>
+            <div class="card col-2" style="width: 18rem;">
+                <div class="card-body">
+                    <div id="date-2" class="card-title"></div>
+                    <div id="weather-2" class="card-body"></div>
+                </div>
+            </div>
+            <div class="card col-2" style="width: 18rem;">
+                <div class="card-body">
+                    <div id="date-3" class="card-title"></div>
+                    <div id="weather-3" class="card-body"></div>
+                </div>
+            </div>
+            <div class="card col-2" style="width: 18rem;">
+                <div class="card-body">
+                    <div id="date-4" class="card-title"></div>
+                    <div id="weather-4" class="card-body"></div>
+                </div>
+            </div>
+            <div class="card col-2" style="width: 18rem;">
+                <div class="card-body">
+                    <div id="date-5" class="card-title"></div>
+                    <div id="weather-5" class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>

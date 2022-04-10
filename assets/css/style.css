@@ -15,3 +15,8 @@ header {
 h1 {
     padding: 20px;
 }
+
+#lat,
+#lon {
+    display: none;
+}
