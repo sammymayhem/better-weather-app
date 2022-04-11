@@ -1,6 +1,11 @@
 var apiKey = "72dcba6758c0f3fef0a894c324ffa5fc";
 
 var currentDate = moment().format("l");
+var dateOneDate1 = moment().add(1, "d").format("l");
+var dateTwoDate1 = moment().add(2, "d").format("l");
+var dateThreeDate1 = moment().add(3, "d").format("l");
+var dateFourDate1 = moment().add(4, "d").format("l");
+var dateFiveDate1 = moment().add(5, "d").format("l");
 
 var todayContainer = document.getElementById("weather-today");
 var fetchButton = document.getElementById("fetch");
@@ -17,31 +22,29 @@ var dateThree = document.getElementById("date-3");
 var dateFour = document.getElementById("date-4");
 var dateFive = document.getElementById("date-5");
 
-var dateOneDate1 = moment().add(1, "d").format("l");
-var dateTwoDate1 = moment().add(2, "d").format("l");
-var dateThreeDate1 = moment().add(3, "d").format("l");
-var dateFourDate1 = moment().add(4, "d").format("l");
-var dateFiveDate1 = moment().add(5, "d").format("l");
+var cityNameEl = document.getElementById("#city-search");
+
 
 // Get city name
 // var getCityName = function (event) {
 //     event.preventDefault();
 
-//     var cityName = nameInputEl.value.trim();
+//     var cityName = cityNameEl.value.trim();
+//     console.log(cityName);
 
-//     if (username) {
-//       getUserRepos(username);
+//     if (cityName) {
 
-//       repoContainerEl.textContent = '';
-//       nameInputEl.value = '';
+//       cityNameEl.value = '';
 //     } else {
-//       alert('Please enter a GitHub username');
+//       alert('Please enter a valid city name.');
 //     }
 //   };
 
-// Fetch informatin from weather API (for main card)
-function getWeatherApi() {
-    var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=San+Diego&exclude=minutely&units=imperial&appid=" + apiKey;
+//   console.log(cityNameEl);
+
+// Fetch information from weather API (Today & 5 day forecast)
+function getWeather() {
+    var requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=San+Diego&limit=1&appid=" + apiKey;
 
     fetch(requestUrl)
         .then(function (response) {
@@ -51,26 +54,16 @@ function getWeatherApi() {
             console.log(data);
 
             var cityData = document.createElement("h2");
-            var tempData = document.createElement("p");
-            var windData = document.createElement("p");
-            var humidityData = document.createElement("p");
-            var uvData = document.createElement("p");
-
             cityData.textContent = data.name + " (" + currentDate + ")";
-            tempData.textContent = "Temp: " + data.main.temp;
-            windData.textContent = "Wind: " + data.wind.speed;
-            humidityData.textContent = "Humidity: " + data.main.humidity;
-
             todayContainer.append(cityData);
-            todayContainer.append(tempData);
-            todayContainer.append(windData);
-            todayContainer.append(humidityData);
-        });
-        
-}
 
-// Fetch information from weather API (5 day forecast)
-function getFiveDay() {
+            var latData = data[0].lat;
+            var lonData = data[0].lon;
+
+
+           
+        });
+
     var requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-117&exclude=minutely&units=imperial&appid=" + apiKey;
 
     fetch(requestUrl)
@@ -79,6 +72,21 @@ function getFiveDay() {
         })
         .then(function (data1) {
             console.log(data1);
+
+            var tempData = document.createElement("p");
+            var windData = document.createElement("p");
+            var humidityData = document.createElement("p");
+            var uvData = document.createElement("p");
+
+            tempData.textContent = "Temp: " + data1.current.temp;
+            windData.textContent = "Wind: " + data1.current.wind_speed;
+            humidityData.textContent = "Humidity: " + data1.current.humidity;
+            uvData.textContent = "UV Index: " + data1.current.uvi;
+
+            todayContainer.append(tempData);
+            todayContainer.append(windData);
+            todayContainer.append(humidityData);
+            todayContainer.append(uvData);
 
             var dayOneDate = document.createElement("h2")
             var dayOneIcon = document.createElement("i");
@@ -173,9 +181,15 @@ function getFiveDay() {
         })
 }
 
-fetchButton.addEventListener('click', getWeatherApi);
-fetchButton.addEventListener('click', getFiveDay);
+// fetchButton.addEventListener('submit', getCityName);
+fetchButton.addEventListener('click', getWeather);
 
+// fetchButton.on('click', function(event) {
+//     var button = $(this);
+//     var city = $(".city-search").val();
+
+//     console.log(city);
+// })
 
 // city (current date)
 // temp F
