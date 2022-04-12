@@ -23,7 +23,36 @@ var dateFour = document.getElementById("date-4");
 var dateFive = document.getElementById("date-5");
 
 var cityNameEl = document.getElementById("#city-search");
+var cityHistoryBtn = document.querySelector("#city-history")
 
+var requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=San+Diego&limit=1&appid=" + apiKey;
+
+var city = [];
+
+
+// function renderCityHistory() {
+//     cityHistoryBtn.innerHTML = "";
+
+//     for (var i = city.length - 1; i >= 0; i--) {
+//         var city = cities[i];
+
+//         var button = document.createElement("button");
+//         button.classList.add("btn, btn-secondary, btn-lg");
+//         button.textContent = city;
+
+//         cityHistoryBtn.appendChild(button);
+//     }
+// }
+
+// cityHistoryBtn.addEventListener("click", function(event) {
+//     var element = event.target;
+
+//     if (element.matches(".prev-search") === true) {
+//         var city = element.textContent;
+
+//         renderCityHistory(city);
+//     }
+// })
 
 // Get city name
 // var getCityName = function (event) {
@@ -44,161 +73,169 @@ var cityNameEl = document.getElementById("#city-search");
 
 // Fetch information from weather API (Today & 5 day forecast)
 function getWeather() {
-    var requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=San+Diego&limit=1&appid=" + apiKey;
-
     fetch(requestUrl)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
-
-            var cityData = document.createElement("h2");
-            cityData.textContent = data.name + " (" + currentDate + ")";
-            todayContainer.append(cityData);
-
             var latData = data[0].lat;
             var lonData = data[0].lon;
 
+            var cityName = document.createElement("h1")
+            cityName.textContent = data[0].name + " (" + currentDate + ")";
+            todayContainer.append(cityName);
 
-           
-        });
+            console.log(data);
+            var requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latData + "&lon=" + lonData + "&exclude=minutely&units=imperial&appid=" + apiKey;
+            fetch(requestUrl)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data1) {
+                    console.log(data1);
+                    
+                    var todayIcon = document.createElement("img");
+                    var tempData = document.createElement("p");
+                    var windData = document.createElement("p");
+                    var humidityData = document.createElement("p");
+                    var uvDataText = document.createElement("p");
+                    var uvData = document.createElement("span");
 
-    var requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-117&exclude=minutely&units=imperial&appid=" + apiKey;
 
-    fetch(requestUrl)
-        .then(function (response) {
-            return response.json();
+                    tempData.textContent = "Temp: " + data1.current.temp;
+                    windData.textContent = "Wind: " + data1.current.wind_speed;
+                    humidityData.textContent = "Humidity: " + data1.current.humidity;
+                    uvDataText.textContent = "UV Index: ";
+                    uvData.textContent = data1.current.uvi;
+
+                    var todayIconCode = data1.current.weather[0].icon
+                    var todayIconUrl = "http://openweathermap.org/img/wn/" + todayIconCode + "@2x.png";
+                    todayIcon.setAttribute("src", todayIconUrl);
+
+                    todayContainer.append(todayIcon)
+                    todayContainer.append(tempData);
+                    todayContainer.append(windData);
+                    todayContainer.append(humidityData);
+                    todayContainer.append(uvDataText);
+                    uvDataText.append(uvData);
+                    uvData.classList.add("badge-success")
+                    
+
+                    var dayOneDate = document.createElement("h2")
+                    var dayOneIcon = document.createElement("img");
+                    var dayOneTemp = document.createElement("p");
+                    var dayOneWind = document.createElement("p");
+                    var dayOneHumidity = document.createElement("p");
+
+                    dayOneDate.textContent = dateOneDate1;
+                    dayOneTemp.textContent = "Temp: " + data1.daily[0].temp.day;
+                    dayOneWind.textContent = "Wind: " + data1.daily[0].wind_speed;
+                    dayOneHumidity.textContent = "Humidity: " + data1.daily[0].humidity;
+
+                    var dayOneIconCode = data1.daily[0].weather[0].icon;
+                    var dayOneIconUrl = "http://openweathermap.org/img/wn/" + dayOneIconCode + "@2x.png";
+                    dayOneIcon.setAttribute("src", dayOneIconUrl);
+
+                    dateOne.append(dateOneDate1);
+                    dayOne.append(dayOneIcon);
+                    dayOne.append(dayOneTemp);
+                    dayOne.append(dayOneWind);
+                    dayOne.append(dayOneHumidity);
+
+
+                    var dayTwoDate = document.createElement("h2")
+                    var dayTwoIcon = document.createElement("img");
+                    var dayTwoTemp = document.createElement("p");
+                    var dayTwoWind = document.createElement("p");
+                    var dayTwoHumidity = document.createElement("p");
+
+                    dayTwoDate.textContent = dateTwoDate1;
+                    dayTwoTemp.textContent = "Temp: " + data1.daily[1].temp.day;
+                    dayTwoWind.textContent = "Wind: " + data1.daily[1].wind_speed;
+                    dayTwoHumidity.textContent = "Humidity: " + data1.daily[1].humidity;
+
+                    var dayTwoIconCode = data1.daily[1].weather[0].icon;
+                    var dayTwoIconUrl = "http://openweathermap.org/img/wn/" + dayTwoIconCode + "@2x.png";
+                    dayTwoIcon.setAttribute("src", dayTwoIconUrl);
+
+                    dateTwo.append(dateTwoDate1);
+                    dayTwo.append(dayTwoIcon);
+                    dayTwo.append(dayTwoTemp);
+                    dayTwo.append(dayTwoWind);
+                    dayTwo.append(dayTwoHumidity);
+
+                    var dayThreeDate = document.createElement("h2")
+                    var dayThreeIcon = document.createElement("img");
+                    var dayThreeTemp = document.createElement("p");
+                    var dayThreeWind = document.createElement("p");
+                    var dayThreeHumidity = document.createElement("p");
+
+                    dayThreeDate.textContent = dateThreeDate1;
+                    dayThreeTemp.textContent = "Temp: " + data1.daily[2].temp.day;
+                    dayThreeWind.textContent = "Wind: " + data1.daily[2].wind_speed;
+                    dayThreeHumidity.textContent = "Humidity: " + data1.daily[2].humidity;
+
+                    var dayThreeIconCode = data1.daily[2].weather[0].icon;
+                    var dayThreeIconUrl = "http://openweathermap.org/img/wn/" + dayThreeIconCode + "@2x.png";
+                    dayThreeIcon.setAttribute("src", dayThreeIconUrl);
+
+                    dateThree.append(dateThreeDate1);
+                    dayThree.append(dayThreeIcon);
+                    dayThree.append(dayThreeTemp);
+                    dayThree.append(dayThreeWind);
+                    dayThree.append(dayThreeHumidity);
+
+                    var dayFourDate = document.createElement("h2")
+                    var dayFourIcon = document.createElement("img");
+                    var dayFourTemp = document.createElement("p");
+                    var dayFourWind = document.createElement("p");
+                    var dayFourHumidity = document.createElement("p");
+
+                    dayFourDate.textContent = dateFourDate1;
+                    dayFourTemp.textContent = "Temp: " + data1.daily[3].temp.day;
+                    dayFourWind.textContent = "Wind: " + data1.daily[3].wind_speed;
+                    dayFourHumidity.textContent = "Humidity: " + data1.daily[3].humidity;
+
+                    var dayFourIconCode = data1.daily[3].weather[0].icon;
+                    var dayFourIconUrl = "http://openweathermap.org/img/wn/" + dayFourIconCode + "@2x.png";
+                    dayFourIcon.setAttribute("src", dayFourIconUrl);
+
+                    dateFour.append(dateFourDate1);
+                    dayFour.append(dayFourIcon);
+                    dayFour.append(dayFourTemp);
+                    dayFour.append(dayFourWind);
+                    dayFour.append(dayFourHumidity);
+
+                    var dayFiveDate = document.createElement("h2")
+                    var dayFiveIcon = document.createElement("img");
+                    var dayFiveTemp = document.createElement("p");
+                    var dayFiveWind = document.createElement("p");
+                    var dayFiveHumidity = document.createElement("p");
+
+                    dayFiveDate.textContent = dateFiveDate1;
+                    dayFiveTemp.textContent = "Temp: " + data1.daily[4].temp.day;
+                    dayFiveWind.textContent = "Wind: " + data1.daily[4].wind_speed;
+                    dayFiveHumidity.textContent = "Humidity: " + data1.daily[4].humidity;
+
+                    var dayFiveIconCode = data1.daily[4].weather[0].icon;
+                    var dayFiveIconUrl = "http://openweathermap.org/img/wn/" + dayFiveIconCode + "@2x.png";
+                    dayFiveIcon.setAttribute("src", dayFiveIconUrl);
+
+                    dateFive.append(dateFiveDate1);
+                    dayFive.append(dayFiveIcon);
+                    dayFive.append(dayFiveTemp);
+                    dayFive.append(dayFiveWind);
+                    dayFive.append(dayFiveHumidity);
+
+                })
+
         })
-        .then(function (data1) {
-            console.log(data1);
 
-            var tempData = document.createElement("p");
-            var windData = document.createElement("p");
-            var humidityData = document.createElement("p");
-            var uvData = document.createElement("p");
-
-            tempData.textContent = "Temp: " + data1.current.temp;
-            windData.textContent = "Wind: " + data1.current.wind_speed;
-            humidityData.textContent = "Humidity: " + data1.current.humidity;
-            uvData.textContent = "UV Index: " + data1.current.uvi;
-
-            todayContainer.append(tempData);
-            todayContainer.append(windData);
-            todayContainer.append(humidityData);
-            todayContainer.append(uvData);
-
-            var dayOneDate = document.createElement("h2")
-            var dayOneIcon = document.createElement("i");
-            var dayOneTemp = document.createElement("p");
-            var dayOneWind = document.createElement("p");
-            var dayOneHumidity = document.createElement("p");
-
-            dayOneDate.textContent = dateOneDate1;
-            dayOneIcon.textContent = data1.daily[0].weather[0].icon;
-            dayOneTemp.textContent = "Temp: " + data1.daily[0].temp.day;
-            dayOneWind.textContent = "Wind: " + data1.daily[0].wind_speed;
-            dayOneHumidity.textContent = "Humidity: " + data1.daily[0].humidity;
-
-            dateOne.append(dateOneDate1);
-            dayOne.append(dayOneIcon);
-            dayOne.append(dayOneTemp);
-            dayOne.append(dayOneWind);
-            dayOne.append(dayOneHumidity);
-
-            var dayTwoDate = document.createElement("h2")
-            var dayTwoIcon = document.createElement("i");
-            var dayTwoTemp = document.createElement("p");
-            var dayTwoWind = document.createElement("p");
-            var dayTwoHumidity = document.createElement("p");
-
-            dayTwoDate.textContent = dateTwoDate1;
-            dayTwoIcon.textContent = data1.daily[1].weather[0].icon;
-            dayTwoTemp.textContent = "Temp: " + data1.daily[1].temp.day;
-            dayTwoWind.textContent = "Wind: " + data1.daily[1].wind_speed;
-            dayTwoHumidity.textContent = "Humidity: " + data1.daily[1].humidity;
-
-            dateTwo.append(dateTwoDate1);
-            dayTwo.append(dayTwoIcon);
-            dayTwo.append(dayTwoTemp);
-            dayTwo.append(dayTwoWind);
-            dayTwo.append(dayTwoHumidity);
-
-            var dayThreeDate = document.createElement("h2")
-            var dayThreeIcon = document.createElement("i");
-            var dayThreeTemp = document.createElement("p");
-            var dayThreeWind = document.createElement("p");
-            var dayThreeHumidity = document.createElement("p");
-
-            dayThreeDate.textContent = dateThreeDate1;
-            dayThreeIcon.textContent = data1.daily[2].weather[0].icon;
-            dayThreeTemp.textContent = "Temp: " + data1.daily[2].temp.day;
-            dayThreeWind.textContent = "Wind: " + data1.daily[2].wind_speed;
-            dayThreeHumidity.textContent = "Humidity: " + data1.daily[2].humidity;
-
-            dateThree.append(dateThreeDate1);
-            dayThree.append(dayThreeIcon);
-            dayThree.append(dayThreeTemp);
-            dayThree.append(dayThreeWind);
-            dayThree.append(dayThreeHumidity);
-
-            var dayFourDate = document.createElement("h2")
-            var dayFourIcon = document.createElement("i");
-            var dayFourTemp = document.createElement("p");
-            var dayFourWind = document.createElement("p");
-            var dayFourHumidity = document.createElement("p");
-
-            dayFourDate.textContent = dateFourDate1;
-            dayFourIcon.textContent = data1.daily[3].weather[0].icon;
-            dayFourTemp.textContent = "Temp: " + data1.daily[3].temp.day;
-            dayFourWind.textContent = "Wind: " + data1.daily[3].wind_speed;
-            dayFourHumidity.textContent = "Humidity: " + data1.daily[3].humidity;
-
-            dateFour.append(dateFourDate1);
-            dayFour.append(dayFourIcon);
-            dayFour.append(dayFourTemp);
-            dayFour.append(dayFourWind);
-            dayFour.append(dayFourHumidity);
-
-            var dayFiveDate = document.createElement("h2")
-            var dayFiveIcon = document.createElement("i");
-            var dayFiveTemp = document.createElement("p");
-            var dayFiveWind = document.createElement("p");
-            var dayFiveHumidity = document.createElement("p");
-
-            dayFiveDate.textContent = dateFiveDate1;
-            dayFiveIcon.textContent = data1.daily[4].weather[0].icon;
-            dayFiveTemp.textContent = "Temp: " + data1.daily[4].temp.day;
-            dayFiveWind.textContent = "Wind: " + data1.daily[4].wind_speed;
-            dayFiveHumidity.textContent = "Humidity: " + data1.daily[4].humidity;
-
-            dateFive.append(dateFiveDate1);
-            dayFive.append(dayFiveIcon);
-            dayFive.append(dayFiveTemp);
-            dayFive.append(dayFiveWind);
-            dayFive.append(dayFiveHumidity);
-
-        })
 }
 
 // fetchButton.addEventListener('submit', getCityName);
 fetchButton.addEventListener('click', getWeather);
 
-// fetchButton.on('click', function(event) {
-//     var button = $(this);
-//     var city = $(".city-search").val();
-
-//     console.log(city);
-// })
-
-// city (current date)
-// temp F
-// wind
-// humidty
-// uv rating
 
 
-// icon
-// temp
-// wind
-// humidty
+
