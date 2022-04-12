@@ -30,10 +30,10 @@ var cities = [];
 
 // Fetch information from weather API (Today & 5 day forecast)
 fetchButton.addEventListener("click", function getWeather(event) {
-    event.preventDefault();
+    event.preventDefault(); 
 
     var cityName = cityNameEl.value.trim();
-    var requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey;
+    var requestUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey;
 
     fetch(requestUrl)
         .then(function (response) {
