@@ -22,57 +22,19 @@ var dateThree = document.getElementById("date-3");
 var dateFour = document.getElementById("date-4");
 var dateFive = document.getElementById("date-5");
 
-var cityNameEl = document.getElementById("#city-search");
-var cityHistoryBtn = document.querySelector("#city-history")
+var cityNameEl = document.querySelector("#city-search");
+var cityHistory = document.querySelector("#city-history");
 
-var requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=San+Diego&limit=1&appid=" + apiKey;
+var cities = [];
 
-var city = [];
-
-
-// function renderCityHistory() {
-//     cityHistoryBtn.innerHTML = "";
-
-//     for (var i = city.length - 1; i >= 0; i--) {
-//         var city = cities[i];
-
-//         var button = document.createElement("button");
-//         button.classList.add("btn, btn-secondary, btn-lg");
-//         button.textContent = city;
-
-//         cityHistoryBtn.appendChild(button);
-//     }
-// }
-
-// cityHistoryBtn.addEventListener("click", function(event) {
-//     var element = event.target;
-
-//     if (element.matches(".prev-search") === true) {
-//         var city = element.textContent;
-
-//         renderCityHistory(city);
-//     }
-// })
-
-// Get city name
-// var getCityName = function (event) {
-//     event.preventDefault();
-
-//     var cityName = cityNameEl.value.trim();
-//     console.log(cityName);
-
-//     if (cityName) {
-
-//       cityNameEl.value = '';
-//     } else {
-//       alert('Please enter a valid city name.');
-//     }
-//   };
-
-//   console.log(cityNameEl);
 
 // Fetch information from weather API (Today & 5 day forecast)
-function getWeather() {
+fetchButton.addEventListener("click", function getWeather(event) {
+    event.preventDefault();
+
+    var cityName = cityNameEl.value.trim();
+    var requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey;
+
     fetch(requestUrl)
         .then(function (response) {
             return response.json();
@@ -85,14 +47,12 @@ function getWeather() {
             cityName.textContent = data[0].name + " (" + currentDate + ")";
             todayContainer.append(cityName);
 
-            console.log(data);
             var requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latData + "&lon=" + lonData + "&exclude=minutely&units=imperial&appid=" + apiKey;
             fetch(requestUrl)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (data1) {
-                    console.log(data1);
                     
                     var todayIcon = document.createElement("img");
                     var tempData = document.createElement("p");
@@ -231,10 +191,8 @@ function getWeather() {
 
         })
 
-}
+})
 
-// fetchButton.addEventListener('submit', getCityName);
-fetchButton.addEventListener('click', getWeather);
 
 
 
