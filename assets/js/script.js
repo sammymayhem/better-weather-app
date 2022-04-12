@@ -69,7 +69,7 @@ fetchButton.addEventListener("click", function getWeather(event) {
                     uvData.textContent = data1.current.uvi;
 
                     var todayIconCode = data1.current.weather[0].icon
-                    var todayIconUrl = "http://openweathermap.org/img/wn/" + todayIconCode + "@2x.png";
+                    var todayIconUrl = "https://openweathermap.org/img/wn/" + todayIconCode + "@2x.png";
                     todayIcon.setAttribute("src", todayIconUrl);
 
                     todayContainer.append(todayIcon)
@@ -93,7 +93,7 @@ fetchButton.addEventListener("click", function getWeather(event) {
                     dayOneHumidity.textContent = "Humidity: " + data1.daily[0].humidity;
 
                     var dayOneIconCode = data1.daily[0].weather[0].icon;
-                    var dayOneIconUrl = "http://openweathermap.org/img/wn/" + dayOneIconCode + "@2x.png";
+                    var dayOneIconUrl = "https://openweathermap.org/img/wn/" + dayOneIconCode + "@2x.png";
                     dayOneIcon.setAttribute("src", dayOneIconUrl);
 
                     dateOne.append(dateOneDate1);
@@ -115,7 +115,7 @@ fetchButton.addEventListener("click", function getWeather(event) {
                     dayTwoHumidity.textContent = "Humidity: " + data1.daily[1].humidity;
 
                     var dayTwoIconCode = data1.daily[1].weather[0].icon;
-                    var dayTwoIconUrl = "http://openweathermap.org/img/wn/" + dayTwoIconCode + "@2x.png";
+                    var dayTwoIconUrl = "https://openweathermap.org/img/wn/" + dayTwoIconCode + "@2x.png";
                     dayTwoIcon.setAttribute("src", dayTwoIconUrl);
 
                     dateTwo.append(dateTwoDate1);
@@ -136,7 +136,7 @@ fetchButton.addEventListener("click", function getWeather(event) {
                     dayThreeHumidity.textContent = "Humidity: " + data1.daily[2].humidity;
 
                     var dayThreeIconCode = data1.daily[2].weather[0].icon;
-                    var dayThreeIconUrl = "http://openweathermap.org/img/wn/" + dayThreeIconCode + "@2x.png";
+                    var dayThreeIconUrl = "https://openweathermap.org/img/wn/" + dayThreeIconCode + "@2x.png";
                     dayThreeIcon.setAttribute("src", dayThreeIconUrl);
 
                     dateThree.append(dateThreeDate1);
@@ -157,7 +157,7 @@ fetchButton.addEventListener("click", function getWeather(event) {
                     dayFourHumidity.textContent = "Humidity: " + data1.daily[3].humidity;
 
                     var dayFourIconCode = data1.daily[3].weather[0].icon;
-                    var dayFourIconUrl = "http://openweathermap.org/img/wn/" + dayFourIconCode + "@2x.png";
+                    var dayFourIconUrl = "https://openweathermap.org/img/wn/" + dayFourIconCode + "@2x.png";
                     dayFourIcon.setAttribute("src", dayFourIconUrl);
 
                     dateFour.append(dateFourDate1);
@@ -178,7 +178,7 @@ fetchButton.addEventListener("click", function getWeather(event) {
                     dayFiveHumidity.textContent = "Humidity: " + data1.daily[4].humidity;
 
                     var dayFiveIconCode = data1.daily[4].weather[0].icon;
-                    var dayFiveIconUrl = "http://openweathermap.org/img/wn/" + dayFiveIconCode + "@2x.png";
+                    var dayFiveIconUrl = "https://openweathermap.org/img/wn/" + dayFiveIconCode + "@2x.png";
                     dayFiveIcon.setAttribute("src", dayFiveIconUrl);
 
                     dateFive.append(dateFiveDate1);
